@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { db } from "../lib/firebase";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import Todo from "./Todo";
+
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
 
@@ -9,6 +11,7 @@ const TodoList = () => {
     const q = query(collectionRef, orderBy("timestamp", "desc"));
 
     const unsubcribe = onSnapshot(q, (querySnapshot) => {
+      console.log(querySnapshot);
       setTodos(
         querySnapshot.docs.map((doc) => ({
           ...doc.data(),
@@ -24,7 +27,7 @@ const TodoList = () => {
   return (
     <div>
       {todos.map((todo) => (
-        <div key={todo.id}>{todo.title}</div>
+        <Todo key={todo.id} {...todo} />
       ))}
     </div>
   );
