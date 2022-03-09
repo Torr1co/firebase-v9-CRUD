@@ -1,5 +1,5 @@
 import { Avatar, Box, Container, IconButton, Typography } from "@mui/material";
-import TodoList from "../components/Todolist";
+import TodoList from "../components/TodoList";
 import TodoForm from "../components/TodoForm";
 import { useAuth } from "../components/Auth";
 import { signOut } from "firebase/auth";
